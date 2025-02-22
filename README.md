@@ -14,6 +14,8 @@ something like rock, paper, scissors but that can go indefinitely.
   - Smart logic engine for evaluating matchups.
   - Explanation generator for outcomes.
   - Community features (user contributions, leaderboards).
+
+  
 - **Tech Stack Decision:**
   - **Frontend:** HTML5, CSS3 (Tailwind/Sass), JavaScript (React/Vue or vanilla JS), Canvas API.
   - **Backend:** Node.js with Express, WebSockets (Socket.io).
