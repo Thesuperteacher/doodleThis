@@ -17,16 +17,16 @@ something like rock, paper, scissors but that can go indefinitely.
 
   
 - **Tech Stack Decision:**
-  - **Frontend:** HTML5, CSS3 (Tailwind/Sass), JavaScript (React/Vue or vanilla JS), Canvas API.
-  - **Backend:** Node.js with Express, WebSockets (Socket.io).
+  - **Frontend:** React, Tailwind CSS, Canvas API, react-canvas-draw, Socket.io-client.
+  - **Backend:** Node.js + TypeScript, NestJS, Socket.io, PostgreSQL, Redis (for caching).
   - **Database:** MongoDB.
-  - **Deployment:** Docker, AWS/Heroku/GCP, Netlify/Vercel for the frontend.
+  - **Deployment:** Docker, Vercel (frontend), Railway.app/DigitalOcean (backend), GitHub Actions (CI/CD).
 
 ## 2. UI/UX Design
 - **Wireframes & Mockups:**
   - Landing page, drawing canvas, gameplay flow screens, and result/explanation modals.
 - **User Flow:**
-  - **Start Screen:** Introduce the challenge (e.g., “Draw something that beats a rock”).
+  - **Start Screen:** Introduce the challenge (e.g., "Draw something that beats a rock").
   - **Drawing Interface:** Tools for sketching (pen, eraser, clear).
   - **Submission & Evaluation:** Submit drawing, AI recognizes doodle, logic engine compares.
   - **Result Screen:** Display outcome with an explanation.
@@ -36,7 +36,42 @@ something like rock, paper, scissors but that can go indefinitely.
 ## 3. Frontend Development
 ### 3.1 Project Setup
 - Initialize project repository with Git.
-- Set up package manager (npm/yarn) and install necessary libraries.
+- Set up package manager (npm/yarn) and install necessary libraries:
+  ```bash
+  # Initialize new project
+  npm init -y   # or: yarn init -y
+
+  # Core dependencies (specific versions for compatibility)
+  npm install next@12.3.4 react@17.0.2 react-dom@17.0.2
+  npm install @types/react @types/react-dom typescript
+  
+  # Install Tailwind CSS and its peer dependencies (specific versions)
+  npm install -D tailwindcss@3.3.0 postcss@8.4.21 autoprefixer@10.4.14
+  
+  # Drawing related (with legacy peer deps flag)
+  npm install react-canvas-draw@1.2.1 @types/react-canvas-draw --legacy-peer-deps
+  npm install fabric.js
+  
+  # AI/ML dependencies  
+  npm install @tensorflow/tfjs@3.21.0
+  npm install @tensorflow-models/universal-sentence-encoder@1.3.3 --legacy-peer-deps
+  
+  # State management & utilities
+  npm install zustand@4.3.8 axios socket.io-client
+  
+  # Development dependencies
+  npm install -D eslint prettier
+  npm install -D jest @testing-library/react @testing-library/jest-dom
+  ```
+
+- Initialize TypeScript and TailwindCSS:
+  ```bash
+  # TypeScript setup
+  npx tsc --init
+  
+  # TailwindCSS setup (after installing dependencies)
+  npx tailwindcss init -p
+  ```
 
 ### 3.2 Develop the Drawing Interface
 - **Canvas Implementation:**
@@ -56,7 +91,7 @@ something like rock, paper, scissors but that can go indefinitely.
 ### 3.4 Build Gameplay & Explanation UI
 - Develop components for:
   - Game prompts and dynamic challenge transitions.
-  - Result display with explanation text (e.g., “Water extinguishes fire”).
+  - Result display with explanation text (e.g., "Water extinguishes fire").
   - Navigation between rounds.
 
 ## 4. Backend Development
@@ -80,7 +115,7 @@ something like rock, paper, scissors but that can go indefinitely.
   - Develop routines that map recognized doodles to logical outcomes.
 - **Explanation Module:**
   - Build a system (or integrate a rule-based engine) that references a curated knowledge base.
-  - Generate concise, educational explanations for each round’s result.
+  - Generate concise, educational explanations for each round's result.
 
 ## 6. Community & Engagement Features
 - **User Authentication:**
